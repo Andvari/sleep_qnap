@@ -17,7 +17,9 @@ public class Main {
 
         try{
             conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(3000);
             conn.connect();
+
             InputStream istream = (InputStream) conn.getContent();
             int size_page = istream.read(page);
             page[size_page] = 0;
@@ -30,7 +32,7 @@ public class Main {
             istream.read(page);
         }
         catch(IOException e){
-            System.out.println("Server not answer");
+            System.out.println("Server does not responding");
             System.exit(-1);
         }
     }
